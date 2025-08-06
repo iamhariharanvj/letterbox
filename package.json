@@ -1,0 +1,52 @@
+{
+  "name": "letterbox",
+  "version": "1.0.0",
+  "description": "A post mail website that emulates a postbox with letter customization and delivery features",
+  "main": "index.js",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "postinstall": "prisma generate"
+  },
+  "dependencies": {
+    "@prisma/client": "^5.6.0",
+    "autoprefixer": "^10.4.16",
+    "bcryptjs": "^2.4.3",
+    "date-fns": "^2.30.0",
+    "framer-motion": "^10.16.0",
+    "jsonwebtoken": "^9.0.2",
+    "lucide-react": "^0.292.0",
+    "next": "^14.0.0",
+    "postcss": "^8.4.31",
+    "prisma": "^5.6.0",
+    "react": "^18.2.0",
+    "react-color": "^2.19.3",
+    "react-dom": "^18.2.0",
+    "react-hook-form": "^7.47.0",
+    "tailwindcss": "^3.3.0",
+    "uuid": "^9.0.1"
+  },
+  "devDependencies": {
+    "@types/bcryptjs": "^2.4.5",
+    "@types/jsonwebtoken": "^9.0.4",
+    "@types/node": "^20.8.0",
+    "@types/react": "^18.2.0",
+    "@types/react-color": "^3.0.13",
+    "@types/react-dom": "^18.2.0",
+    "@types/uuid": "^9.0.6",
+    "eslint": "^8.51.0",
+    "eslint-config-next": "^14.0.0",
+    "typescript": "^5.2.0"
+  },
+  "keywords": [
+    "post",
+    "mail",
+    "letterbox",
+    "react",
+    "nextjs"
+  ],
+  "author": "Your Name",
+  "license": "MIT"
+}

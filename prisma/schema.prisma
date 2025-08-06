@@ -1,0 +1,67 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+model User {
+  id        String   @id @default(cuid())
+  pincode   String   @unique
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  
+  // Letters sent by this user
+  sentLetters     Letter[] @relation("SenderLetters")
+  // Letters received by this user
+  receivedLetters Letter[] @relation("ReceiverLetters")
+}
+
+model Letter {
+  id          String   @id @default(cuid())
+  title       String
+  content     String
+  senderId    String
+  receiverId  String
+  deliveryTime DateTime
+  isDelivered Boolean  @default(false)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  
+  // Letter customization
+  letterColor     String   @default("#FEFEFE")
+  envelopeColor   String   @default("#8B4513")
+  stampColor      String   @default("#D97706")
+  stampDesign     String   @default("classic")
+  envelopeDesign  String   @default("standard")
+  handwritingFont String   @default("cursive")
+  inkColor        String   @default("#2D3748")
+  paperTexture    String   @default("smooth")
+  paperType       String   @default("standard")
+  foldStyle       String   @default("classic")
+  
+  // Brush strokes for drawing and signatures
+  brushStrokes    String?  // JSON string of brush stroke data
+  
+  // Sender and receiver relationships
+  sender   User @relation("SenderLetters", fields: [senderId], references: [id])
+  receiver User @relation("ReceiverLetters", fields: [receiverId], references: [id])
+  
+  // Delivery relationship
+  delivery Delivery?
+}
+
+model Delivery {
+  id        String   @id @default(cuid())
+  letterId  String   @unique
+  status    String   @default("pending") // pending, in_transit, delivered
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  
+  letter Letter @relation(fields: [letterId], references: [id])
+} 
